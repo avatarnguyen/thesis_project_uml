@@ -1,0 +1,35 @@
+@startuml
+
+abstract        ChangeNotifier
+abstract class  GitManager
+
+class           GitRepoManager
+class           GitJournalPresenter
+class           RepoConfig
+class           RepositoryManager
+class           GitJournalChangeNotifiers
+
+' Relationships
+ChangeNotifier <|-- GitJournalPresenter
+ChangeNotifier <|-- RepositoryManager
+
+GitManager <|-- GitRepoManager 
+
+RepositoryManager <|--  RepoConfig
+SharedPreferences <|--  RepositoryManager
+
+GitJournalPresenter <|--  RepositoryManager
+RepositoryManager <|--  GitJournalPresenter 
+
+' GitJournalChangeNotifiers 
+RepositoryManager <|-- GitJournalChangeNotifiers
+AppConfig <|-- GitJournalChangeNotifiers
+SharedPreferences <|-- GitJournalChangeNotifiers
+
+GitJournalPresenter <|-- GitJournalChangeNotifiers
+GitRepoManager <|-- GitJournalChangeNotifiers
+GitConfig <|-- GitJournalChangeNotifiers
+NotesFolderConfig <|-- GitJournalChangeNotifiers
+Settings <|-- GitJournalChangeNotifiers
+
+@enduml
